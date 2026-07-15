@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Video Shot",
+  "type": "object",
+  "required": ["shot_id", "index", "duration_sec", "purpose", "visual_prompt", "status"],
+  "properties": {
+    "shot_id": {"type": "string"},
+    "index": {"type": "integer", "minimum": 1},
+    "duration_sec": {"type": "number", "exclusiveMinimum": 0},
+    "purpose": {"type": "string"},
+    "visual_prompt": {"type": "string"},
+    "status": {"type": "string"}
+  }
+}
+

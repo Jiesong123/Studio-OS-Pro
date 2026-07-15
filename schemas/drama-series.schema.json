@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Studio OS Drama Series",
+  "type": "object",
+  "required": ["series_id", "title", "genre", "episode_count", "characters", "episodes"],
+  "properties": {
+    "series_id": {"type": "string"},
+    "title": {"type": "string"},
+    "genre": {"type": "string"},
+    "episode_count": {"type": "integer", "minimum": 1},
+    "episode_duration_sec": {"type": "integer", "minimum": 1},
+    "world": {"type": "object"},
+    "characters": {"type": "array", "items": {"type": "object"}},
+    "episodes": {"type": "array", "items": {"type": "object"}}
+  }
+}

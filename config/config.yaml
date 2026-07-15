@@ -1,0 +1,19 @@
+control_box:
+  device_id: control-box-01
+
+media_box:
+  device_id: media-box-01
+  base_url: http://10.10.10.2:9000
+  transport: http
+  artifact_mode: remote_reference
+  timeout_sec: 30
+  poll_interval_sec: 2
+
+providers:
+  video:
+    type: media-box
+    model: auto
+  renderer:
+    type: media-box
+    model: ffmpeg
+

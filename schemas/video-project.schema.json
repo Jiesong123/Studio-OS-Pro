@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Studio OS Video Project",
+  "type": "object",
+  "required": ["project_id", "prompt", "aspect_ratio", "duration_sec", "status", "mode", "shots", "renders"],
+  "properties": {
+    "project_id": {"type": "string"},
+    "prompt": {"type": "string", "minLength": 1},
+    "aspect_ratio": {"type": "string", "pattern": "^[0-9]+:[0-9]+$"},
+    "duration_sec": {"type": "number", "exclusiveMinimum": 0},
+    "mode": {"enum": ["short_video", "drama"]},
+    "status": {"enum": ["created", "script_ready", "storyboard_ready", "rendering", "completed", "failed"]},
+    "shots": {"type": "array", "items": {"$ref": "shot.schema.json"}},
+    "renders": {"type": "array", "items": {"type": "object"}}
+  }
+}
