@@ -17,3 +17,30 @@ providers:
     type: media-box
     model: ffmpeg
 
+# 视频时序处理默认值。Box A 可按镜头和 Box B 能力在运行时覆盖。
+video_pipeline:
+  target_fps: 30
+  keyframe:
+    static_scene_per_sec: 2
+    normal_motion_per_sec: 4
+    fast_action_per_sec: 8
+    max_controlnets_per_shot: 2
+    default_duration_sec: 2.0
+  interpolation:
+    enabled: true
+    engine: rife
+    fallback_engine: ffmpeg_minterpolate
+    source_fps: 8
+    target_fps: 30
+  controlnet:
+    ip_adapter_weight: 0.80
+    openpose_weight: 0.85
+    depth_weight: 0.55
+    lineart_weight: 0.50
+  limits:
+    ip_adapter_weight: [0.60, 0.90]
+    openpose_weight: [0.60, 0.95]
+    depth_weight: [0.30, 0.75]
+    keyframes_per_sec: [1, 10]
+    shot_duration_sec: [0.8, 4.0]
+    retry_count: 2

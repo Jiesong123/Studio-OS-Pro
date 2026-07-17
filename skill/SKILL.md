@@ -18,6 +18,8 @@ description: 兼容入口，用于连接 video-router 以及 product-video、sho
 7. 渲染预览，检查时长、画幅和字幕位置，并报告 artifact URI。
 8. 修改时只处理受影响的镜头或时间线片段，再次渲染。
 
+涉及动作连续性时，先读取 `../knowledge/common/temporal-pipeline.md`。Box A 负责按镜头规划关键帧密度和有界重试；Box B 负责执行实际的 ComfyUI/模型 workflow。不要把 30fps 等同于每秒生成 30 张独立图片。
+
 ## 模式路由
 
 - 一次性信息、商业或社交视频使用 `short_video`。

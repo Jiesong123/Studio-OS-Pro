@@ -29,6 +29,9 @@ class VideoProject:
     shots: list[Shot] = field(default_factory=list)
     assets: list[dict[str, Any]] = field(default_factory=list)
     renders: list[dict[str, Any]] = field(default_factory=list)
+    audio_tracks: list[dict[str, Any]] = field(default_factory=list)
+    subtitles: list[dict[str, Any]] = field(default_factory=list)
+    timeline: dict[str, Any] = field(default_factory=dict)
     runtime_plan: dict[str, Any] = field(default_factory=dict)
     decision_log: list[dict[str, Any]] = field(default_factory=list)
     mode: str = "short_video"

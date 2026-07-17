@@ -11,6 +11,21 @@
     "mode": {"enum": ["short_video", "drama"]},
     "status": {"enum": ["created", "script_ready", "storyboard_ready", "rendering", "completed", "failed"]},
     "shots": {"type": "array", "items": {"$ref": "shot.schema.json"}},
-    "renders": {"type": "array", "items": {"type": "object"}}
+    "renders": {"type": "array", "items": {"type": "object"}},
+    "audio_tracks": {"type": "array", "items": {"type": "object"}},
+    "subtitles": {"type": "array", "items": {"type": "object"}},
+    "timeline": {"type": "object"},
+    "runtime_plan": {
+      "type": "object",
+      "properties": {
+        "target_fps": {"type": "integer", "minimum": 1},
+        "keyframes_per_sec": {"type": "integer", "minimum": 1, "maximum": 10},
+        "source_fps": {"type": "integer", "minimum": 1},
+        "keyframe_workflow": {"type": ["string", "null"]},
+        "interpolation_workflow": {"type": ["string", "null"]},
+        "controlnet_modes": {"type": "array", "items": {"type": "string"}},
+        "parameters": {"type": "object"}
+      }
+    }
   }
 }

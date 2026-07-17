@@ -31,6 +31,9 @@ class MediaCapabilities:
     image_models: list[dict[str, Any]] = field(default_factory=list)
     renderers: list[str] = field(default_factory=list)
     resources: dict[str, Any] = field(default_factory=dict)
+    keyframe_generation: bool = False
+    interpolation_engines: list[str] = field(default_factory=list)
+    controlnets: list[str] = field(default_factory=list)
 
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "MediaCapabilities":
@@ -44,6 +47,9 @@ class MediaCapabilities:
             image_models=images,
             renderers=groups.get("rendering", groups.get("renderers", [])),
             resources=value.get("resources", {}),
+            keyframe_generation=bool(groups.get("keyframe_generation", False)),
+            interpolation_engines=groups.get("interpolation_engines", []),
+            controlnets=groups.get("controlnets", []),
         )
 
 
@@ -66,4 +72,3 @@ class CapabilityRegistry:
         if quality == "high":
             return sorted(candidates, key=lambda m: (m.max_resolution, -m.queue_length), reverse=True)[0]
         return sorted(candidates, key=lambda m: (m.queue_length, m.kind != "local"))[0]
-

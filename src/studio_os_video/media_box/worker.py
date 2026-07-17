@@ -28,6 +28,9 @@ class MediaWorkerState:
                     "type": "local",
                 }],
                 "rendering": ["ffmpeg"],
+                "keyframe_generation": True,
+                "interpolation_engines": ["rife"],
+                "controlnets": ["openpose", "depth", "lineart"],
             },
             "resources": {"queue_length": 0},
         }
@@ -98,4 +101,3 @@ def run(host: str = "0.0.0.0", port: int = 9000) -> None:
 
 if __name__ == "__main__":
     run()
-
