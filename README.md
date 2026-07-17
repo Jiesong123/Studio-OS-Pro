@@ -85,6 +85,36 @@ PYTHONPATH=src python3 -c "from studio_os_video import VideoPipeline; print('run
 pytest -q
 ```
 
+## 部署后重启建议
+
+拉取新版本后，不需要让模型凭感觉判断是否重启。使用部署检查脚本分析 Git 改动：
+
+```bash
+cd "$STUDIO_OS_VIDEO_ROOT"
+git pull origin main
+PYTHONPATH=src python3 scripts/restart_advisor.py --base <上一版本提交号>
+```
+
+也可以输出 JSON，供 Box A 或本地模型读取：
+
+```bash
+PYTHONPATH=src python3 scripts/restart_advisor.py \
+  --base <上一版本提交号> \
+  --json
+```
+
+脚本根据 [config/restart-policy.json](config/restart-policy.json) 将变更归类：
+
+| 输出 | 建议 |
+|---|---|
+| `box_a_runtime: restart` | Runtime、配置或依赖改变，重启 Box A |
+| `box_b_worker: restart` | Media Worker 或能力契约改变，重启 Box B Worker |
+| `box_a_context: reload` | 只改 Skill、知识库或文档，重新加载上下文即可 |
+| `comfyui: inspect` | 工作流改变，先检查缓存，通常不必立即重启 |
+| `comfyui: restart` | 模型资源或自定义节点改变，重新加载模型或重启 ComfyUI |
+
+脚本只给出建议，不会自动杀进程或重启服务。重启后应检查服务日志、Box B `/v1/capabilities`，并运行一个短测试任务。`runtime ok` 只能证明 Python 可以导入，不能单独证明正在运行的服务已经换成新代码。
+
 ## 上传到 GitHub
 
 在你的 Git 克隆目录中执行：
