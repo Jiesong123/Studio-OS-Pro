@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {"patterns": ["src/studio_os_video/", "config/config.yaml", "pyproject.toml"], "service": "box_a_runtime", "action": "restart", "reason": "Runtime、配置或依赖发生变化"},
+    {"patterns": ["src/studio_os_video/media_box/worker.py", "src/studio_os_video/media_box/capabilities.py", "src/studio_os_video/media_box/client.py"], "service": "box_b_worker", "action": "restart", "reason": "Media Worker 或能力契约发生变化"},
+    {"patterns": ["skill/", "knowledge/", "README.md", "docs/"], "service": "box_a_context", "action": "reload", "reason": "Skill、知识库或文档发生变化"},
+    {"patterns": ["workflows/", "comfyui/"], "service": "comfyui", "action": "inspect", "reason": "工作流或 ComfyUI 资源发生变化，需检查是否缓存"},
+    {"patterns": ["models/", "checkpoints/"], "service": "comfyui", "action": "restart", "reason": "模型资源发生变化，需要重新加载"}
+  ],
+  "default_action": "inspect"
+}

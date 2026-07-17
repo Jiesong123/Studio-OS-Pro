@@ -30,6 +30,10 @@ description: 兼容入口，用于连接 video-router 以及 product-video、sho
 
 使用 `VideoPipeline.create_project`、`plan`、`storyboard`、`generate_assets` 和 `render`。Provider 可以替换，不要在 Skill 中写死供应商。
 
+## 部署后检查
+
+拉取新版本后，先运行 `PYTHONPATH=src python3 scripts/restart_advisor.py --base <上一版本提交号>`，读取 `config/restart-policy.json` 给出的建议。Runtime 或 Media Worker 代码变化时分别重启 Box A 或 Box B Worker；只改 Skill/知识库时重新加载上下文即可。该脚本只提供建议，不自动杀进程或重启服务。
+
 ## 质量门
 
 - 镜头时长总和与目标时长的误差应在允许范围内。
