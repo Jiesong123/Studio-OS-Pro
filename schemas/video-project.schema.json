@@ -4,6 +4,7 @@
   "type": "object",
   "required": ["project_id", "prompt", "aspect_ratio", "duration_sec", "status", "mode", "shots", "renders"],
   "properties": {
+    "schema_version": {"type": "string"},
     "project_id": {"type": "string"},
     "prompt": {"type": "string", "minLength": 1},
     "aspect_ratio": {"type": "string", "pattern": "^[0-9]+:[0-9]+$"},
@@ -24,7 +25,16 @@
         "keyframe_workflow": {"type": ["string", "null"]},
         "interpolation_workflow": {"type": ["string", "null"]},
         "controlnet_modes": {"type": "array", "items": {"type": "string"}},
-        "parameters": {"type": "object"}
+        "parameters": {"type": "object"},
+        "num_frames": {"type": "integer", "minimum": 9},
+        "hybrid_export": {
+          "type": "object",
+          "properties": {
+            "project_bible": {"type": "string"},
+            "shot_plan": {"type": "string"},
+            "exported_at": {"type": "string"}
+          }
+        }
       }
     }
   }

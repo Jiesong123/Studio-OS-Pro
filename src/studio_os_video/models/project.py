@@ -37,6 +37,7 @@ class VideoProject:
     mode: str = "short_video"
     series: dict[str, Any] = field(default_factory=dict)
     errors: list[str] = field(default_factory=list)
+    schema_version: str = "1.2"
     version: int = 1
     updated_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 

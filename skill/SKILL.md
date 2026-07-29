@@ -20,6 +20,8 @@ description: 兼容入口，用于连接 video-router 以及 product-video、sho
 
 涉及动作连续性时，先读取 `../knowledge/common/temporal-pipeline.md`。Box A 负责按镜头规划关键帧密度和有界重试；Box B 负责执行实际的 ComfyUI/模型 workflow。不要把 30fps 等同于每秒生成 30 张独立图片。
 
+需要交给 T2I→I2V、T2V 或视频延长生产技能时，为每个镜头填写 `story`、`bindings`、`motion`、`camera`、`continuity`、`production` 和 `qa`。运行 `python scripts/export_hybrid_plan.py <project.json> --output-dir <目录>`；只有导出校验通过，才提交媒体生产。字段和交接规则见 `../docs/hybrid-production-contract.md`。
+
 ## 模式路由
 
 - 一次性信息、商业或社交视频使用 `short_video`。
@@ -42,5 +44,7 @@ description: 兼容入口，用于连接 video-router 以及 product-video、sho
 - Provider 调用失败必须记录并支持重试。
 - 完成结果必须包含可播放的渲染 URI 和项目 ID。
 - `drama` 模式下，每集必须有目标、冲突、变化后的局面和悬念；每个重复角色必须有视觉参考和连续性记录。
+- 动态人物镜头必须记录开始状态、单一主要动作、动作发展和结束状态。
+- 连续镜头必须引用前一镜头，并继承已验收的最后一帧；明确切镜时仍须保持身份、服装、道具和场景锚点。
 
 字段详细定义见 [references/project-model.md](references/project-model.md)。创作指导请读取 `../knowledge/` 下对应文件。

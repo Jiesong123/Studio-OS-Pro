@@ -9,7 +9,88 @@
     "duration_sec": {"type": "number", "exclusiveMinimum": 0},
     "purpose": {"type": "string"},
     "visual_prompt": {"type": "string"},
+    "narration": {"type": ["string", "null"]},
+    "subtitle": {"type": ["string", "null"]},
+    "story": {
+      "type": "object",
+      "properties": {
+        "beat": {"type": "string"},
+        "dialogue": {"type": "string"},
+        "emotion_start": {"type": "string"},
+        "emotion_end": {"type": "string"},
+        "cause": {"type": "string"},
+        "result": {"type": "string"}
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "properties": {
+        "character_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "wardrobe_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "prop_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "scene_id": {"type": "string"}
+      }
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "start_state": {"type": "string"},
+        "progression": {"type": "string"},
+        "end_state": {"type": "string"},
+        "primary_action": {"type": "string"}
+      }
+    },
+    "camera": {
+      "type": "object",
+      "properties": {
+        "shot_size": {"type": "string"},
+        "angle": {"type": "string"},
+        "movement": {"type": "string"},
+        "screen_direction": {"type": "string"},
+        "axis": {"type": "string"},
+        "focal_length": {"type": "string"}
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "properties": {
+        "previous_shot_id": {"type": ["string", "null"]},
+        "kind": {"enum": ["continuous", "cut"]},
+        "inherited_start_frame": {"type": ["string", "null"]},
+        "authorized_changes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "production": {
+      "type": "object",
+      "properties": {
+        "mode": {"enum": ["t2i_i2v_keyframe", "t2v", "video_extend"]},
+        "keyframes": {
+          "type": "object",
+          "properties": {
+            "start": {"type": ["string", "null"]},
+            "end": {"type": ["string", "null"]}
+          }
+        },
+        "workflow_ids": {
+          "type": "object",
+          "properties": {
+            "t2i": {"type": ["string", "null"]},
+            "motion": {"type": ["string", "null"]}
+          }
+        },
+        "reference_conditioning": {"type": "object"}
+      }
+    },
+    "qa": {
+      "type": "object",
+      "properties": {
+        "first_frame": {"type": ["string", "null"]},
+        "middle_frame": {"type": ["string", "null"]},
+        "last_frame": {"type": ["string", "null"]},
+        "passed": {"type": "boolean"}
+      }
+    },
+    "assets": {"type": "array", "items": {"type": "string"}},
     "status": {"type": "string"}
   }
 }
-

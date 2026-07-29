@@ -60,7 +60,9 @@ class RuntimePlanner:
         """Apply bounded, deterministic changes after a failed shot quality gate."""
         params = dict(plan.parameters or {})
         if feedback.get("identity_drift", 0) > 0.2:
-            params["ip_adapter_weight"] = min(0.90, params.get("ip_adapter_weight", 0.80) + 0.05)
+            params["ip_adapter_weight"] = round(
+                min(0.90, params.get("ip_adapter_weight", 0.80) + 0.05), 2
+            )
         if feedback.get("motion_jump", 0) > 0.25:
             plan.keyframes_per_sec = min(10, plan.keyframes_per_sec + 2)
             plan.source_fps = min(10, plan.source_fps + 2)

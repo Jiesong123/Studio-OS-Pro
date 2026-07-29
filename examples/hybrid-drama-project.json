@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.2",
+  "project_id": "flower-story",
+  "prompt": "少年在花田中追上少女",
+  "aspect_ratio": "9:16",
+  "duration_sec": 10,
+  "status": "storyboard_ready",
+  "mode": "drama",
+  "renders": [],
+  "runtime_plan": {
+    "target_fps": 24
+  },
+  "series": {
+    "world": {
+      "visual_style": {
+        "anchor": "soft Japanese anime, pastel palette"
+      },
+      "scenes": [
+        {
+          "scene_id": "flower-field",
+          "name": "春日花田",
+          "anchor": "vast spring flower field, afternoon sunlight"
+        }
+      ]
+    },
+    "characters": [
+      {
+        "character_id": "boy-a",
+        "name": "少年",
+        "visual_identity": {
+          "prompt_anchor": "young anime boy, short black hair",
+          "wardrobes": {
+            "boy-daily": {
+              "anchor": "white button-up shirt, navy trousers"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "shots": [
+    {
+      "shot_id": "shot01",
+      "index": 1,
+      "duration_sec": 5,
+      "purpose": "建立人物与空间",
+      "visual_prompt": "少年从花田入口向前慢走",
+      "status": "planned",
+      "story": {
+        "beat": "少年发现远处的少女并向前走",
+        "emotion_start": "平静",
+        "emotion_end": "期待"
+      },
+      "bindings": {
+        "character_ids": ["boy-a"],
+        "wardrobe_ids": ["boy-daily"],
+        "prop_ids": [],
+        "scene_id": "flower-field"
+      },
+      "motion": {
+        "start_state": "少年站在画面左侧的花田入口",
+        "primary_action": "向前慢走",
+        "progression": "先迈右脚，随后保持平稳步幅",
+        "end_state": "少年走到画面中央，身体仍朝右"
+      },
+      "camera": {
+        "shot_size": "medium wide",
+        "movement": "parallel tracking",
+        "screen_direction": "left_to_right"
+      },
+      "continuity": {
+        "kind": "cut",
+        "previous_shot_id": null,
+        "authorized_changes": []
+      },
+      "production": {
+        "mode": "t2i_i2v_keyframe",
+        "workflow_ids": {
+          "t2i": "flux2-t2i-vertical-v1",
+          "motion": "ltx23-keyframe-interpolation-v1"
+        },
+        "keyframes": {
+          "start": "keyframes/shot01/start.png",
+          "end": "keyframes/shot01/end.png"
+        }
+      },
+      "qa": {
+        "first_frame": null,
+        "middle_frame": null,
+        "last_frame": null,
+        "passed": false
+      }
+    },
+    {
+      "shot_id": "shot02",
+      "index": 2,
+      "duration_sec": 5,
+      "purpose": "动作升级",
+      "visual_prompt": "少年从慢走逐渐加速为轻跑",
+      "status": "planned",
+      "story": {
+        "beat": "少年担心错过少女，开始加速",
+        "emotion_start": "期待",
+        "emotion_end": "急切"
+      },
+      "bindings": {
+        "character_ids": ["boy-a"],
+        "wardrobe_ids": ["boy-daily"],
+        "prop_ids": [],
+        "scene_id": "flower-field"
+      },
+      "motion": {
+        "start_state": "少年位于画面中央，保持向右慢走",
+        "primary_action": "从慢走加速为轻跑",
+        "progression": "步幅逐渐增大，身体轻微前倾",
+        "end_state": "少年保持向右轻跑"
+      },
+      "camera": {
+        "shot_size": "medium",
+        "movement": "parallel tracking",
+        "screen_direction": "left_to_right"
+      },
+      "continuity": {
+        "kind": "continuous",
+        "previous_shot_id": "shot01",
+        "authorized_changes": []
+      },
+      "production": {
+        "mode": "t2i_i2v_keyframe",
+        "workflow_ids": {
+          "t2i": "flux2-t2i-vertical-v1",
+          "motion": "ltx23-keyframe-interpolation-v1"
+        }
+      },
+      "qa": {
+        "first_frame": null,
+        "middle_frame": null,
+        "last_frame": null,
+        "passed": false
+      }
+    }
+  ]
+}
